@@ -1,4 +1,4 @@
-# claude-token-parser
+# [claude-token-parser](https://www.npmjs.com/package/claude-token-parser)
 
 Parse [Claude Code](https://claude.ai/code) session logs into token usage summaries, cost breakdowns, and aggregations by project, model, and time period.
 

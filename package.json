@@ -1,6 +1,6 @@
 {
   "name": "claude-token-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse Claude Code session logs — token usage, cost breakdowns, and aggregations by project, model, and time period.",
   "type": "module",
   "main": "./dist/index.js",
