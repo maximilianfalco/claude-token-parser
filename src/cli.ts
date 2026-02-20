@@ -83,7 +83,8 @@ function parseArgs(argv: string[]): {
     const arg = argv[i];
     switch (arg) {
       case "--path":
-        opts.path = argv[++i];
+        if (++i >= argv.length) { console.error("Missing value for --path"); process.exit(1); }
+        opts.path = argv[i];
         break;
       case "--json":
         opts.json = true;
@@ -98,13 +99,16 @@ function parseArgs(argv: string[]): {
         opts.monthly = true;
         break;
       case "--project":
-        opts.project = argv[++i];
+        if (++i >= argv.length) { console.error("Missing value for --project"); process.exit(1); }
+        opts.project = argv[i];
         break;
       case "--from":
-        from = argv[++i];
+        if (++i >= argv.length) { console.error("Missing value for --from"); process.exit(1); }
+        from = argv[i];
         break;
       case "--to":
-        to = argv[++i];
+        if (++i >= argv.length) { console.error("Missing value for --to"); process.exit(1); }
+        to = argv[i];
         break;
       case "-h":
       case "--help":
@@ -235,6 +239,7 @@ async function main(): Promise<void> {
 }
 
 main().catch((err) => {
+  process.stderr.write("\r\x1b[K");
   console.error(err);
   process.exit(1);
 });

@@ -39,8 +39,8 @@
     "type": "git",
     "url": "git+https://github.com/maximilianfalco/claude-token-parser.git"
   },
-  "dependencies": {
-    "zod": "^3.25.0"
+  "engines": {
+    "node": ">=20"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -16,17 +16,42 @@ export interface FileOffsets {
   [filePath: string]: number;
 }
 
+const PATH_NOISE = new Set([
+  "Desktop", "Documents", "Code", "projects", "dev",
+  "src", "repos", "workspace", "work", "git", "github",
+]);
+
 /**
- * Derive project name from a JSONL directory path.
- * e.g. "-Users-maximilianwidjaya-Desktop-Code-readme" -> "readme"
+ * Derive project name from a Claude projects directory name.
+ * Claude encodes the full path with dashes, e.g.:
+ *   "-Users-alice-Desktop-Code-my-app" -> "my-app"
+ *   "-home-bob-projects-foo"           -> "foo"
+ *   "-Users-bob-dev-my-app"            -> "my-app"
+ *
+ * Strategy: find the home directory prefix (Users/<user> or
+ * home/<user>), skip common parent directories (Desktop, Code,
+ * projects, dev, etc.), and use the remaining segments.
  */
 export function deriveProjectName(dirName: string): string {
   const segments = dirName.split("-").filter(Boolean);
   if (segments.length === 0) return "unknown";
 
-  const codeIdx = segments.lastIndexOf("Code");
-  if (codeIdx !== -1 && codeIdx < segments.length - 1) {
-    return segments.slice(codeIdx + 1).join("-");
+  // Find home dir prefix: Users/<user> or home/<user>
+  let start = 0;
+  for (let i = 0; i < segments.length - 1; i++) {
+    if (segments[i] === "Users" || segments[i] === "home") {
+      start = i + 2; // skip "Users" + username
+      break;
+    }
+  }
+
+  // Skip common intermediate directories
+  while (start < segments.length && PATH_NOISE.has(segments[start])) {
+    start++;
+  }
+
+  if (start < segments.length) {
+    return segments.slice(start).join("-");
   }
 
   return segments[segments.length - 1];

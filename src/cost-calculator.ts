@@ -71,5 +71,7 @@ export function calculateCost(model: string, tokens: TokenCounts): number {
 }
 
 export function getPricingTable(): Record<string, ModelPricing> {
-  return { ...PRICING };
+  return Object.fromEntries(
+    Object.entries(PRICING).map(([k, v]) => [k, { ...v }]),
+  );
 }
