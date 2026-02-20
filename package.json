@@ -1,0 +1,50 @@
+{
+  "name": "claude-token-parser",
+  "version": "1.0.0",
+  "description": "Parse Claude Code session logs — token usage, cost breakdowns, and aggregations by project, model, and time period.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "claude-token-parser": "./dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "token-usage",
+    "cost-tracker",
+    "anthropic",
+    "llm",
+    "cli"
+  ],
+  "author": "Maximilian Falco Widjaya <maximilianfalco@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maximilianfalco/claude-token-parser.git"
+  },
+  "dependencies": {
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5",
+    "vitest": "^3.2.0"
+  }
+}
