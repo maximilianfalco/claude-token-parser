@@ -32,9 +32,9 @@ By Model
 
 By Project
 ────────────────────────────────────────
-  readme-readme          $3858.16  116 sessions
-  readme-markdown        $2339.66  60 sessions
-  mycelium               $1159.83  27 sessions
+  razzle dazzle          $3858.16  116 sessions
+  spizzle spazzle        $2339.66  60 sessions
+  shimmer shazzle        $1159.83  27 sessions
 ```
 
 ### Options
@@ -57,7 +57,7 @@ By Project
 claude-token-parser --monthly
 
 # Filter to one project with daily view
-claude-token-parser --project mycelium --daily
+claude-token-parser --project hello --daily
 
 # Date range
 claude-token-parser --from 2026-02-01 --to 2026-02-14
